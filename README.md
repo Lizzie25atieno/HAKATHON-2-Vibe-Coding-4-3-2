@@ -77,21 +77,21 @@ StudyBuddy addresses these challenges by providing:
    ```bash
    git clone <repository-url>
  
-Install required Python packages:
+## Install required Python packages:
 pip install -r requirements.txt
 
-Set up MySQL database:
+## Set up MySQL database:
 1. Create studybuddy_db database.
 2. Execute database.sql to create tables and insert sample data.
 
-Run the Flask app:
+## Run the Flask app:
 python app.py
 
-Usage
-Register as a student.
-Create a profile with course, skills, and university.
-Find study buddies, send requests, and chat in real-time.
-Access lecturers, exercises, internships, and developer tools.
+## Usage
+1. Register as a student.
+2. Create a profile with course, skills, and university.
+3. Find study buddies, send requests, and chat in real-time.
+4. Access lecturers, exercises, internships, and developer tools.
 
 
 
