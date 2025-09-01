@@ -7,13 +7,17 @@ app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 
 # DB Connection 
+import os
+import mysql.connector
+
 def get_db_connection():
     return mysql.connector.connect(
-        host=config.DB_HOST,
-        user=config.DB_USER,
-        password=config.DB_PASSWORD,
-        database=config.DB_NAME
+        host=os.environ.get("DB_HOST"),
+        user=os.environ.get("DB_USER"),
+        password=os.environ.get("DB_PASSWORD"),
+        database=os.environ.get("DB_NAME")
     )
+
 
 # Home / Index 
 @app.route("/")
