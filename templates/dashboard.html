@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ username }}!</h2>
+
+{% if not profile_exists %}
+    <p><a href="{{ url_for('profile') }}" class="btn">Create your profile to find buddies</a></p>
+{% else %}
+
+{% if session.get('is_premium') %}
+  <span class="badge" style="background-color: gold; padding: 5px; border-radius: 5px;">
+      Premium Member
+  </span>
+{% endif %}
+
+<p>You can now access your study buddy tools:</p>
+<div class="dashboard-cards">
+    <div class="card">
+        <h3>My Profile</h3>
+        <p>Update your course, skills, and university info.</p>
+        <a href="{{ url_for('profile') }}" class="btn">Go to Profile</a>
+    </div>
+    <div class="card">
+        <h3>Find a Study Buddy</h3>
+        <p>Search for students with similar courses, skills, or university.</p>
+        <a href="{{ url_for('match') }}" class="btn">Find Buddy</a>
+    </div>
+    <div class="card">
+        <h3>Buddy Requests</h3>
+        <p>View and respond to incoming buddy requests.</p>
+        <a href="{{ url_for('requests_page') }}" class="btn">View Requests</a>
+    </div>
+    <div class="card">
+        <h3>Messages</h3>
+        <p>Chat with your accepted buddies.</p>
+        <a href="{{ url_for('messages') }}" class="btn">Go to Messages</a>
+    </div>
+    <div class="card">    
+        <h3>Lecturers</h3>
+        <p>Find Lecturers for additional studies.</p>
+        <a href="{{ url_for('lecturers') }}" class="btn">View Available Lectures</a>
+    </div>
+    <div class="card">
+        <h3>Exercises</h3>
+        <p>Test Your Skills and understanding.</p>
+        <a href="{{ url_for('exercises') }}" class="btn">Test Exercise</a>
+    </div>
+    <div class="card">
+        <h3>Internships</h3>
+        <p>Are you looking for industrial attachments and internships?</p>
+        <a href="{{ url_for('companies') }}" class="btn">View Available opportunities</a>
+    </div>
+    <div class="card">
+        <h3>Developer Tools</h3>
+        <p>Modern developer tools and platforms.</p>
+        <a href="{{ url_for('tools') }}" class="btn">Developer Tools & Resources</a>
+    </div>      
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Buddy - Home</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>📚 Welcome to Study Buddy!</h1>
+    <p>Find the perfect study partner, connect with mentors, and grow your skills together.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Why Study Buddy?</h2>
+      <ul>
+        <li>🤝 Match with students taking the same course as you</li>
+        <li>🧑‍🏫 Access lecturers for premium guidance</li>
+        <li>📖 Practice with exercises & tests</li>
+        <li>🏢 Find internships/attachments from trusted companies</li>
+      </ul>
+    </section>
+
+    <section class="buttons">
+      <a href="{{ url_for('login') }}" class="btn">Login</a>
+      <a href="{{ url_for('register') }}" class="btn">Register</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Study Buddy. All rights reserved.</p>
+  </footer>
+</body>
+</html>

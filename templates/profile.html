@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<h2>My Profile</h2>
+
+<form method="POST">
+    <label>Course:</label><br>
+    <input type="text" name="course" value="{{ profile.course if profile else '' }}" required><br><br>
+
+    <label>Skills:</label><br>
+    <input type="text" name="skills" value="{{ profile.skills if profile else '' }}"><br><br>
+
+    <label>University:</label><br>
+    <input type="text" name="university" value="{{ profile.university if profile else '' }}"><br><br>
+
+    <button type="submit">Save Profile</button>
+</form>
+
+{% if profile %}
+    <h3>Your Current Details:</h3>
+    <ul>
+        <li><strong>Course:</strong> {{ profile.course }}</li>
+        <li><strong>Skills:</strong> {{ profile.skills }}</li>
+        <li><strong>University:</strong> {{ profile.university }}</li>
+    </ul>
+{% endif %}
+{% endblock %}

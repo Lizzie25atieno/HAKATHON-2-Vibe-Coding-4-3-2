@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Internships / Attachments{% endblock %}
+
+{% block content %}
+<h2>Available Internships & Attachments</h2>
+<ul>
+  {% for company in companies %}
+    <li>
+      <strong>{{ company.name }}</strong> ({{ company.sector }})<br>
+      Contact: {{ company.contact_email }}<br>
+      <a href="{{ company.link }}">More Info</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+{% if not premium %}
+    <p>Some content is premium. <a href="{{ url_for('upgrade') }}">Upgrade to Premium</a> to access everything!</p>
+{% endif %}

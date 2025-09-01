@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Find a Study Buddy{% endblock %}
+
+{% block content %}
+<h2>Find a Study Buddy</h2>
+
+<form method="POST">
+    <label>Filter by:</label>
+    <select name="filter">
+        <option value="course">Same Course</option>
+        <option value="university">Same University</option>
+        <option value="skills">Similar Skills</option>
+    </select>
+    <button type="submit">Search</button>
+</form>
+
+<input type="text" id="skill-filter" placeholder="Filter by skill (client-side)" style="margin-top:10px;">
+
+<h3>Matches:</h3>
+<div class="matches-container">
+    {% if matches %}
+        {% for m in matches %}
+            <div class="match-card match-item" data-skills="{{ m.skills }}">
+                <h4>{{ m.username }}</h4>
+                <p><strong>Course:</strong> {{ m.course }}</p>
+                <p><strong>Skills:</strong> {{ m.skills }}</p>
+                <p><strong>University:</strong> {{ m.university }}</p>
+                <form method="POST" action="{{ url_for('send_request') }}" class="send-request-form">
+                    <input type="hidden" name="receiver_id" value="{{ m.id }}">
+                    <button type="submit">Send Request</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No matches found. Try another filter.</p>
+    {% endif %}
+</div>
+
+<br>
+<a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+{% endblock %}

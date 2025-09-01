@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Exercises{% endblock %}
+
+{% block content %}
+<h2>Practice Exercises</h2>
+<ul>
+  {% for exercise in exercises %}
+    <li>
+      <strong>{{ exercise.title }}</strong> ({{ exercise.course }})<br>
+      {{ exercise.description }}<br>
+      <a href="{{ exercise.link }}">Access Exercise</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+{% if not premium %}
+    <p>Some content is premium. <a href="{{ url_for('upgrade') }}">Upgrade to Premium</a> to access everything!</p>
+{% endif %}

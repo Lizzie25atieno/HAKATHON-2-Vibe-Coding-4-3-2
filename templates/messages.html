@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}My Buddies{% endblock %}
+
+{% block content %}
+<h2>My Buddies</h2>
+
+{% if buddies %}
+    <ul>
+        {% for b in buddies %}
+            <li>
+                <a href="{{ url_for('chat', buddy_id=b.id) }}">
+                    Chat with {{ b.username }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You don’t have any buddies yet.</p>
+{% endif %}
+
+<br>
+<a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+{% endblock %}

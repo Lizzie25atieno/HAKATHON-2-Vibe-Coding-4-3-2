@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}StudyBuddy{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <!-- Navigation -->
+    <nav>
+        {% if session.get('is_premium') %}
+           <span class="premium-badge">🌟 Premium Member</span>
+        {% endif %}
+
+        <a href="{{ url_for('dashboard') }}">Dashboard</a> |
+        <a href="{{ url_for('profile') }}">My Profile</a> |
+        <a href="{{ url_for('match') }}">Find Buddy</a> |
+        <a href="{{ url_for('lecturers') }}">Lecturers</a> |
+        <a href="{{ url_for('exercises') }}">Exercises</a> |
+        <a href="{{ url_for('companies') }}">Internships</a> |
+        <a href="{{ url_for('tools') }}">Developer Tools</a> |
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash-container">
+          {% for category, message in messages %}
+            <li class="flash flash-{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Study Buddy. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Buddy Requests{% endblock %}
+
+{% block content %}
+<h2>Buddy Requests</h2>
+
+{% if received %}
+    <ul>
+        {% for r in received %}
+            <li>
+                {{ r.sender_name }} wants to connect with you ({{ r.status }})
+                {% if r.status == 'pending' %}
+                    <form method="POST" action="{{ url_for('respond_request') }}">
+                        <input type="hidden" name="request_id" value="{{ r.id }}">
+                        <button type="submit" name="action" value="accept">Accept</button>
+                        <button type="submit" name="action" value="decline">Decline</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No buddy requests yet.</p>
+{% endif %}
+
+<br>
+<a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+{% endblock %}

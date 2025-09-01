@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Chat with {{ buddy.username }}{% endblock %}
+
+{% block content %}
+<h2>Chat with {{ buddy.username }}</h2>
+
+<div id="chat-box" style="border:1px solid #ccc; padding:10px; height:300px; overflow-y:scroll;">
+    {% for msg in chat_history %}
+        <p>
+            <b>{{ msg.sender }}</b>: {{ msg.content }}
+            <i>({{ msg.created_at }})</i>
+        </p>
+    {% endfor %}
+    {% if not chat_history %}
+        <p>No messages yet. Say hi 👋</p>
+    {% endif %}
+</div>
+
+<form method="POST">
+    <input type="hidden" name="receiver_id" value="{{ buddy.id }}">
+    <input type="text" name="content" placeholder="Type a message..." required>
+    <button type="submit">Send</button>
+</form>
+
+<br>
+<a href="{{ url_for('messages') }}">Back to Buddies</a>
+
+<script>
+  const chatBox = document.getElementById("chat-box");
+  if(chatBox) { chatBox.scrollTop = chatBox.scrollHeight; }
+</script>
+{% endblock %}

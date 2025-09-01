@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Developer Tools & Resources{% endblock %}
+
+{% block content %}
+<h2>Developer Tools & Resources</h2>
+<p>Explore these tools to enhance your learning, development, and productivity:</p>
+
+<div class="resources-container">
+    {% for res in resources %}
+        <div class="resource-card">
+            <h4>{{ res.name }}</h4>
+            <p><a href="{{ res.access_link }}" target="_blank">Access Tool</a></p>
+            <p><a href="{{ res.guide }}" target="_blank">Tutorial / Guide</a></p>
+        </div>
+    {% endfor %}
+</div>
+
+<br>
+<a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+{% endblock %}
